@@ -1,0 +1,675 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2019.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="546" y="298" width="264" height="164" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>This is letting downstream tools know to expect fields parsed from the download response.</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="WhiteSmoke" />
+          <Shape shape="0" />
+          <Justification Justification="6" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="837" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="site_name" selected="True" rename="site" />
+            <SelectField field="token" selected="True" rename="X-Tableau-Auth" size="512" />
+            <SelectField field="site_id" selected="True" size="512" />
+            <SelectField field="user_id" selected="True" size="512" />
+            <SelectField field="DownloadData" selected="True" />
+            <SelectField field="DownloadHeaders" selected="True" />
+            <SelectField field="request_url" selected="False" />
+            <SelectField field="payload" selected="False" />
+            <SelectField field="credentials" selected="False" />
+            <SelectField field="site" selected="False" />
+            <SelectField field="site_contentUrl" selected="False" />
+            <SelectField field="user" selected="False" />
+            <SelectField field="server_url" selected="False" />
+            <SelectField field="personal_access_token_name" selected="False" />
+            <SelectField field="personal_access_token_secret" selected="False" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="site" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="X-Tableau-Auth" size="512" source="(Multiple Sources)" type="V_WString" />
+            <Field name="site_id" size="512" source="(Multiple Sources)" type="V_WString" />
+            <Field name="user_id" size="512" source="(Multiple Sources)" type="V_WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+        <Position x="557" y="366" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <NumRows value="0" />
+          <Fields>
+            <Field name="site_id" />
+            <Field name="token" />
+            <Field name="user_id" />
+          </Fields>
+          <Data />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="site_id" size="1073741823" source="TextInput:" type="V_WString" />
+            <Field name="token" size="1073741823" source="TextInput:" type="V_WString" />
+            <Field name="user_id" size="1073741823" source="TextInput:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="650" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Ignore</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="True" />
+          <OutputOrder>
+            <Connection>#1</Connection>
+            <Connection>#2</Connection>
+          </OutputOrder>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: // Light cleansing of server a..." type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="request_url" size="1073741823" source="Formula: [server_url]+&quot;/api/3.6/auth/si..." type="V_WString" />
+            <Field name="payload" size="999999" source="Formula: '{&quot;credentials&quot;:{&quot;personalAcce..." type="WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="credentials" size="1" type="V_String" />
+            <Field name="token" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+            <Field name="site" size="1" type="V_String" />
+            <Field name="site_id" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+            <Field name="site_contentUrl" size="7" type="V_String" />
+            <Field name="user" size="1" type="V_String" />
+            <Field name="user_id" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="743" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>First</Mode>
+          <N>1</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText />
+          <DefaultAnnotationText>First 1</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: // Light cleansing of server a..." type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="request_url" size="1073741823" source="Formula: [server_url]+&quot;/api/3.6/auth/si..." type="V_WString" />
+            <Field name="payload" size="999999" source="Formula: '{&quot;credentials&quot;:{&quot;personalAcce..." type="WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="credentials" size="1" type="V_String" />
+            <Field name="token" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+            <Field name="site" size="1" type="V_String" />
+            <Field name="site_id" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+            <Field name="site_contentUrl" size="7" type="V_String" />
+            <Field name="user" size="1" type="V_String" />
+            <Field name="user_id" size="1073741823" source="(Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.XMLParse.XMLParse">
+        <Position x="557" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <XMLField>DownloadData</XMLField>
+          <XMLElement />
+          <ChildValues value="True" />
+          <OuterXML value="False" />
+          <ParseRoot value="False" />
+          <IgnoreErrors value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: // Light cleansing of server a..." type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="request_url" size="1073741823" source="Formula: [server_url]+&quot;/api/3.6/auth/si..." type="V_WString" />
+            <Field name="payload" size="999999" source="Formula: '{&quot;credentials&quot;:{&quot;personalAcce..." type="WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+            <Field name="credentials" size="1" type="V_String" />
+            <Field name="token" size="55" type="V_String" />
+            <Field name="site" size="1" type="V_String" />
+            <Field name="site_id" size="36" type="V_String" />
+            <Field name="site_contentUrl" size="7" type="V_String" />
+            <Field name="user" size="1" type="V_String" />
+            <Field name="user_id" size="36" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxXMLParse" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxConnectorGui.Download.Download">
+        <Position x="463" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <URLField>request_url</URLField>
+          <OutputMode>String</OutputMode>
+          <CodePage>65001</CodePage>
+          <EncodeURLs value="True" />
+          <Headers>
+            <NameValues>
+              <Item name="Content-Type" value="application/json" />
+            </NameValues>
+            <Fields orderChanged="False">
+              <Field name="server_url" selected="False" />
+              <Field name="site_name" selected="False" />
+              <Field name="personal_access_token_name" selected="False" />
+              <Field name="personal_access_token_secret" selected="False" />
+              <Field name="request_url" selected="False" />
+              <Field name="payload" selected="False" />
+              <Field name="*Unknown" selected="False" />
+            </Fields>
+          </Headers>
+          <Payload>
+            <HTTPAction>POST</HTTPAction>
+            <QueryStringBodyMode>Field</QueryStringBodyMode>
+            <Field>payload</Field>
+          </Payload>
+          <UserName />
+          <Password />
+          <numConnections>1</numConnections>
+          <Timeout>600</Timeout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: // Light cleansing of server a..." type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="request_url" size="1073741823" source="Formula: [server_url]+&quot;/api/3.6/auth/si..." type="V_WString" />
+            <Field name="payload" size="999999" source="Formula: '{&quot;credentials&quot;:{&quot;personalAcce..." type="WString" />
+            <Field name="DownloadData" size="1073741823" source="Download" type="V_WString" />
+            <Field name="DownloadHeaders" size="2147483647" source="Download" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxConnectorEngine.dll" EngineDllEntryPoint="AlteryxDownload" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="370" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="// Light cleansing of server address:&#xA;&#xA;regex_replace(&#xA;	trim(replace([server_url],'\','/')),&#xA;	'([/\\]*)$',&#xA;	'')" field="server_url" size="999999" type="V_WString" />
+            <FormulaField expression="[server_url]+&quot;/api/3.6/auth/signin&quot;" field="request_url" size="1073741823" type="V_WString" />
+            <FormulaField expression="'{&quot;credentials&quot;:{&quot;personalAccessTokenName&quot;: &quot;'&#xA;+[personal_access_token_name]+&#xA;'&quot;,&quot;personalAccessTokenSecret&quot;:&quot;'&#xA;+[personal_access_token_secret]+&#xA;'&quot;,&quot;site&quot;: {&quot;contentUrl&quot;: &quot;'&#xA;+[site_name]+&#xA;'&quot;}}}'" field="payload" size="999999" type="WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText />
+          <DefaultAnnotationText>server_url = // Light cleansing of server address:
+
+regex_replace(
+	trim(replace...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: // Light cleansing of server a..." type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="request_url" size="1073741823" source="Formula: [server_url]+&quot;/api/3.6/auth/si..." type="V_WString" />
+            <Field name="payload" size="999999" source="Formula: '{&quot;credentials&quot;:{&quot;personalAcce..." type="WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="183" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="server_url" selected="True" type="V_WString" size="999999" />
+            <SelectField field="site_name" selected="True" type="V_WString" size="999999" />
+            <SelectField field="personal_access_token_name" selected="True" type="V_WString" size="999999" />
+            <SelectField field="personal_access_token_secret" selected="True" type="V_WString" size="999999" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="TextInput:" type="V_WString" />
+            <Field name="site_name" size="999999" source="TextInput:" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="TextInput:" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="TextInput:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="90" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Login Info</Name>
+          <Abbrev />
+          <ShowFieldMap value="True" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="server_url" />
+                <Field name="site_name" />
+                <Field name="personal_access_token_name" />
+                <Field name="personal_access_token_secret" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>________________server_url_______________</c>
+                  <c>________site_name_______</c>
+                  <c>________token_name________</c>
+                  <c>_____________token_secret___________</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Text Input (11)</Name>
+          <DefaultAnnotationText />
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="server_url" size="41" source="TextInput:" type="String" />
+            <Field name="site_name" size="24" source="TextInput:" type="String" />
+            <Field name="personal_access_token_name" size="26" source="TextInput:" type="String" />
+            <Field name="personal_access_token_secret" size="36" source="TextInput:" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="930" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Login Authorization</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="270" y="366" width="160" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Prepare the auth request</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="450" y="366" width="92" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Submit the auth request</Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="26">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="54" width="984" height="176" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Tableau
+Personal Access Token
+REST API Authentication</Text>
+          <Font name="Microsoft Sans Serif" size="36" style="1" />
+          <TextColor name="White" />
+          <FillColor r="31" g="68" b="125" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="882" y="54" width="112" height="176" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text><![CDATA[ ]]></Text>
+          <Font name="Segoe UI" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="3" />
+          <Justification Justification="4" />
+          <BG_Image>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</BG_Image>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings>
+        <Position x="277" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="List Box (11)">"server_url","site_name","personal_access_token_name","personal_access_token_secret"</Value>
+          <Value name="Check Box (84)">False</Value>
+          <Value name="Check Box (117)">False</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">False</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output26">
+          <RecordInfo>
+            <Field name="server_url" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="site_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_name" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+            <Field name="personal_access_token_secret" size="999999" source="Formula: [_CurrentField_]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="654" y="90" width="192" height="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Request an authentication token from the Tableau Server REST API so that subsequent calls to the API can be made.</Text>
+          <Font name="Microsoft Sans Serif" size="9.75" style="0" />
+          <TextColor name="DarkSlateGray" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="Output" />
+      <Destination ToolID="32" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="32" Connection="Output26" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Tableau-PAT-Authentication</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (1)</Name>
+          <ToolId value="1" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (19)</Description>
+              <Name>Macro Input (19)</Name>
+              <ToolId value="19" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (20)</Description>
+              <Name>Macro Output (20)</Name>
+              <ToolId value="20" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="34" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="19" Selected="True" />
+        <Tool ToolId="20" Selected="True" />
+        <Tool ToolId="32" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
